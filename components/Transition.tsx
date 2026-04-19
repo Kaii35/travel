@@ -17,13 +17,15 @@ export default function Transition() {
           <motion.div
             key={i}
             className="absolute h-1 w-1 rounded-full bg-gold/30"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
             initial={{
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
               scale: 0,
             }}
             animate={{
-              y: [null, -100],
+              y: [0, -100],
               scale: [0, 1, 0],
               opacity: [0, 1, 0],
             }}

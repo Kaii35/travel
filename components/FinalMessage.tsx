@@ -50,7 +50,7 @@ export default function FinalMessage({ onRestart }: FinalMessageProps) {
 
       {/* Corazones flotantes */}
       {showHearts && (
-        <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
           {[...Array(20)].map((_, i) => (
             <motion.div
               key={i}
@@ -58,14 +58,14 @@ export default function FinalMessage({ onRestart }: FinalMessageProps) {
               style={{
                 left: `${Math.random() * 100}%`,
                 fontSize: `${12 + Math.random() * 20}px`,
+                bottom: '-50px',
               }}
               initial={{
-                y: typeof window !== 'undefined' ? window.innerHeight + 50 : 1000,
                 opacity: 0,
                 rotate: Math.random() * 40 - 20,
               }}
               animate={{
-                y: -100,
+                y: [0, '-110vh'],
                 opacity: [0, 0.8, 0.8, 0],
                 rotate: Math.random() * 40 - 20,
               }}

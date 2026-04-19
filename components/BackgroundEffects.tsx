@@ -158,7 +158,7 @@ export default function BackgroundEffects({ stage }: BackgroundEffectsProps) {
                 bottom: '-5%',
               }}
               animate={{
-                y: [0, -window.innerHeight - 100],
+                y: [0, -1200],
                 x: [(Math.random() - 0.5) * 100, (Math.random() - 0.5) * 200],
                 opacity: [0, 0.5, 0],
               }}

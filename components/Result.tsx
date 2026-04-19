@@ -92,7 +92,7 @@ export default function Result({ destination, onReset, onViewGallery }: ResultPr
                 opacity: 1,
               }}
               animate={{
-                y: typeof window !== 'undefined' ? window.innerHeight + 100 : 1000,
+                y: '100vh',
                 x: (Math.random() - 0.5) * 200,
                 rotate: Math.random() * 720,
                 opacity: [1, 1, 0],
