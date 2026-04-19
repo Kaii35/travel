@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   ESTILOS GLOBALES - EXPERIENCIA CINEMATOGRÁFICA
+   ======================================== */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-charcoal text-white antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  /* Selección de texto elegante */
+  ::selection {
+    @apply bg-gold/30 text-white;
+  }
+}
+
+@layer components {
+  /* Efecto de brillo sutil en hover - estilo Apple */
+  .glow-effect {
+    @apply relative overflow-hidden;
+  }
+
+  .glow-effect::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-700;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(201, 169, 98, 0.1),
+      transparent 40%
+    );
+  }
+
+  .glow-effect:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Texto con gradiente elegante */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #C9A962 50%,
+      #ffffff 100%
+    );
+  }
+
+  /* Línea decorativa animada */
+  .line-reveal {
+    @apply relative;
+  }
+
+  .line-reveal::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent;
+    width: 0;
+    transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .line-reveal:hover::after {
+    width: 100%;
+  }
+
+  /* Botón cinematográfico */
+  .btn-cinematic {
+    @apply relative px-8 py-4 overflow-hidden rounded-full font-medium tracking-wide;
+    @apply border border-gold/30 bg-transparent text-white;
+    @apply transition-all duration-500 ease-out;
+    @apply hover:border-gold hover:shadow-[0_0_30px_rgba(201,169,98,0.3)];
+  }
+
+  .btn-cinematic::before {
+    content: '';
+    @apply absolute inset-0 -z-10 opacity-0;
+    background: linear-gradient(135deg, rgba(201, 169, 98, 0.2), transparent);
+    transition: opacity 0.5s ease;
+  }
+
+  .btn-cinematic:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Card con efecto 3D sutil */
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-8px) rotateX(2deg);
+  }
+
+  /* Fondo con ruido para textura */
+  .noise-bg {
+    position: relative;
+  }
+
+  .noise-bg::before {
+    content: '';
+    @apply absolute inset-0 opacity-[0.03] pointer-events-none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Cursor personalizado para elementos interactivos */
+  .cursor-glow {
+    cursor: pointer;
+  }
+
+  /* Efecto de máscara de texto */
+  .mask-text {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  /* Animación de entrada escalonada */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* Desenfoque cinematográfico */
+  .blur-cinema {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
+
+  /* Sombra elegante */
+  .shadow-elegant {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 20px 40px -15px rgba(201, 169, 98, 0.15),
+      0 0 0 1px rgba(201, 169, 98, 0.05);
+  }
+
+  /* Transiciones suaves tipo Apple */
+  .transition-apple {
+    transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Ocultar scrollbar pero mantener funcionalidad */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Animaciones personalizadas para Framer Motion */
+@keyframes letter-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotateX(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+/* Media queries para mejor experiencia móvil */
+@media (max-width: 768px) {
+  .card-3d:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Reducir movimiento para accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
